@@ -29,7 +29,16 @@ The `mvalert` component will return an object which containe two method `alert` 
 * `title` , the title of the popup window,can not be `null` and `undefined`
 * `message`,the message will be shown in the popup window body,can be a string or basic html tag,can not be `null` and `undefined`
 * `callback`,when click button in the popup window ,will invoke the `callback` with a paramter.
-* `options`, configure the button text,`ok` button is `确定`,`cancel` button is `取消` in default.
+* `options`, configure the button text and popup window id.There is default value.
+
+	```javascript
+	//options config
+    var options = {
+        ok: '确定',
+        cancel: '取消',
+        id: null //default to timestamp
+    };
+	```
 
 ###confirm(title,message,callback,options)
 These params are the same as `alert`.
