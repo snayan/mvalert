@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>alert example</title>
+    <link rel="stylesheet" href="../src/mvalert.css">
+    <script type="text/javascript" src="../mvalert.js"></script>
+    <style>
+        body {
+            margin: 100px;
+        }
+
+        #alert, #confirm {
+            font-size: 14px;
+            font-weight: normal;
+            text-align: center;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            line-height: 1;
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+<button id="alert">alert</button>
+<button id="confirm">confirm</button>
+<script>
+
+    function $(selector) {
+        return document.querySelector(selector);
+    }
+
+    var mv = Object.create(MvAlert);
+    $('#alert').addEventListener('click', function (e) {
+        console.log(this);
+        mv.alert('标题', '这里是提示消息，可以是html标签', function (isOk) {
+            console.log(isOk);
+        });
+    });
+    $('#confirm').addEventListener('click', function (e) {
+        mv.confirm('标题', '这里是提示消息，可以是html标签', function (isOk) {
+            console.log(isOk);
+        });
+    });
+
+</script>
+</body>
+</html>

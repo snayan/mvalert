@@ -1,0 +1,23 @@
+{
+  "name": "mvalert",
+  "version": "1.0.0",
+  "description": "a mini alert component,which has no dependencies",
+  "main": "mvalert.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://snayan@github.com/snayan/mvalert.git"
+  },
+  "keywords": [
+    "alert",
+    "confirm"
+  ],
+  "author": "snayan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/snayan/mvalert/issues"
+  },
+  "homepage": "https://github.com/snayan/mvalert#readme"
+}

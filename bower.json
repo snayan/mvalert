@@ -1,0 +1,21 @@
+{
+  "name": "mvalert",
+  "description": "a mini alert component,which has no dependencies",
+  "main": "mvalert.js",
+  "authors": [
+    "snayan"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "alert",
+    "confirm"
+  ],
+  "homepage": "https://github.com/snayan/mvalert",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

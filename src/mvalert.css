@@ -1,0 +1,132 @@
+
+div.mvalert-fade {
+    transition: opacity 0.15s linear;
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+}
+
+div.mvalert-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgb(0, 0, 0);
+    z-index: 1140;
+    opacity: 0;
+    transition: opacity 0.15s linear;
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+}
+
+div.mvalert-backdrop.mvalert-in {
+    opacity: 0.55;
+}
+
+div.mvalert-modal {
+    width: 412px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1150;
+    background: #ffffff;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transition: opacity 0.15s linear;
+    -webkit-transition: opacity 0.15s linear;
+    -moz-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+}
+
+div.mvalert-modal.mvalert-in {
+    opacity: 1;
+}
+
+h3.mvalert-modal-header {
+    line-height: 40px;
+    border: 1px solid rgb(202, 221, 235);
+    background: rgb(239, 245, 249);
+    padding: 0 20px;
+    margin: 0;
+    font-size: 16px;
+    color: #333333;
+    font-weight: normal;
+}
+
+div.mvalert-modal-body {
+    font-size: 14px;
+    color: #666666;
+}
+
+div.mvalert-modal-body-content {
+    padding: 20px;
+    line-height: 24px;
+}
+
+div.mvalert-modal-body-msg {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+span.mvalert-modal-body-img {
+    background: url("ic_alert.png") no-repeat;
+    width: 24px;
+    height: 24px;
+    border: none;
+    margin: 0 10px 0 0;
+    display: block;
+    float: left;
+
+}
+
+div.mvalert-modal-body-button {
+    overflow: hidden;
+    margin: 0 20px 20px 0;
+}
+
+div.mvalert-modal-body-button button {
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    line-height: 1;
+    margin: 0 20px 0 0;
+}
+
+div.mvalert-modal-body-button button:focus {
+    outline: none;
+}
+
+div.mvalert-modal-body-button button.ok {
+    background: #4cb549;
+    color: #ffffff;
+    border: 1px solid #4cb549;
+}
+
+div.mvalert-modal-body-button button.cancel {
+    background: #f5f5f5;
+    color: #333333;
+    border: 1px solid #e7e7e7;
+}
+
+div.mvalert-modal-body-button button.ok:hover {
+    background: #3d913a;
+}
+
+div.mvalert-modal-body-button button.cancel:hover {
+    background: #EEEEE0;
+}
+
+div.mvalert-modal-body-button button:first-child {
+    margin: 0;
+}
