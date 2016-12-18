@@ -40,8 +40,11 @@ more details see [example](https://github.com/snayan/mvalert/tree/master/example
 ###alert
 
 ```javascript
+function $$(selector) {
+    return document.querySelector(selector);
+}
 var mv = Object.create(MvAlert);
-$('#alert').addEventListener('click', function (e) {
+$$('#alert').addEventListener('click', function (e) {
     mv.alert('标题', '这里是提示消息，可以是html标签', function (isOk) {
         console.log(isOk);
     });
@@ -51,7 +54,7 @@ $('#alert').addEventListener('click', function (e) {
 ###confirm
  
 ```javascript
-$('#confirm').addEventListener('click', function (e) {
+$$('#confirm').addEventListener('click', function (e) {
     mv.confirm('标题', '这里是提示消息，可以是html标签', function (isOk) {
         console.log(isOk);
     });
