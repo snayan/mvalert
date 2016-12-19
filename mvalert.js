@@ -18,72 +18,64 @@
 }(this, function () {
 
     //private variable
-    var pre_id = 'mvalert';
-    var callback = Function.prototype;//empty function
-    var $div, $back;
+    var _cb, _$div, _$back;
 
-    //options config
+    //default options config
     var options = {
-        ok: '确定',
-        cancel: '取消',
-        id: null
+        ok: '确定',//ok button text
+        cancel: '取消',//cancel button text
+        id: null,//popup window id
+        icon: null//icon class name
     };
 
+
     //alert function
-    function alert(title, msg, callback, options) {
-        if (typeof callback != 'function') {
-            options = callback;
-            callback = void 0;
-        }
-        init(title, msg, callback, options);
-        createBackdrop();
-        createPopup('alert', title, msg);
-        return popup();
+    function alert(title, msg, opts, cb) {
+        return main(title, msg, opts, cb, 'alert');
     }
 
     //confirm function
-    function confirm(title, msg, callback, options) {
-        if (typeof callback != 'function') {
-            options = callback;
-            callback = void 0;
+    function confirm(title, msg, opts, cb) {
+        return main(title, msg, opts, cb, 'confirm')
+    }
+
+    //main function
+    function main(title, msg, opts, cb, type) {
+        if (title == null || msg == null) {
+            throw new Error('title or msg can not be null or undefined');
         }
-        init(title, msg, callback, options);
+        if (typeof opts == 'function') {
+            cb = opts;
+            opts = {};
+        }
+        opts || (opts = {});
+        cb && typeof cb == 'function' || (cb = Function.prototype);
+        initOpts(opts);
         createBackdrop();
-        createPopup('confirm', title, msg);
-        return popup();
+        createPopup(type, title, msg, opts);
+        return popup(cb);
     }
 
     //init options
-    function init(title, msg, cb, opts) {
-        if (title == null || msg == null) {
-            console.error('title or msg can not be null or undefined');
-            throw new Error('title or msg can not be null or undefined');
-        }
-        callback = typeof cb === 'function' ? cb : Function.prototype;
-        options.id = pre_id + timeStamp();
-        if (opts) {
-            if (opts.ok && typeof opts.ok === 'string') {
-                options.ok = opts.ok;
-            }
-            if (opts.cancel && typeof opts.cancel === 'string') {
-                options.cancel = opts.cancel;
-            }
-            if (opts.id && typeof  opts.id === 'string') {
-                options.id = opts.id;
-            }
-        }
+    function initOpts(opts) {
+        options.id = 'mvalert' + Date.now();
+        opts.ok || (opts.ok = options.ok);
+        opts.cancel || (opts.cancel = options.cancel);
+        opts.id || (opts.id = options.id);
+        opts.icon || (opts.icon = options.icon);
+
         var id = options.id;
         var first = id.slice(0, 1);
         id = id.slice(1);
         first = first === '#' ? '' : first;
         options.id = first + id;
-        if ($div != null || $back != null) {
+        if (_$div != null || _$back != null) {
             close();
         }
     }
 
     //create popup div
-    function createPopup(type, title, msg) {
+    function createPopup(type, title, msg, opts) {
         var div = document.createElement('div');
         var header = document.createElement('h3');
         var body = document.createElement('div');
@@ -95,21 +87,24 @@
         var cancelBtn = document.createElement('button');
         div.classList.add('mvalert-modal');
         // div.classList.add(type);
-        div.setAttribute('id', options.id);
+        div.setAttribute('id', opts.id);
         header.innerText = title;
         header.classList.add('mvalert-modal-header');
         body.classList.add('mvalert-modal-body');
         cbody.classList.add('mvalert-modal-body-content');
         tbody.innerHTML = msg;
         tbody.classList.add('mvalert-modal-body-msg');
-        span.classList.add('mvalert-modal-body-img');
-        span.innerText = '!';
-        cbody.appendChild(span);
+        if (opts.icon) {
+            span.classList.add('mvalert-modal-body-img');
+            span.classList.add(opts.icon);
+            // span.innerText = '!';
+            cbody.appendChild(span);
+        }
         cbody.appendChild(tbody);
         bbody.classList.add('mvalert-modal-body-button');
-        okBtn.innerText = options.ok;
+        okBtn.innerText = opts.ok;
         okBtn.classList.add('ok');
-        cancelBtn.innerText = options.cancel;
+        cancelBtn.innerText = opts.cancel;
         cancelBtn.classList.add('cancel');
         if (type === 'confirm') {
             bbody.appendChild(cancelBtn);
@@ -120,7 +115,7 @@
         div.appendChild(header);
         div.appendChild(body);
         document.body.appendChild(div);
-        $div = div;
+        _$div = div;
     }
 
     //create backdrop div
@@ -128,7 +123,7 @@
         var div = document.createElement('div');
         div.classList.add('mvalert-backdrop');
         document.body.appendChild(div);
-        $back = div;
+        _$back = div;
     }
 
     //handler click event
@@ -137,47 +132,30 @@
         if (e.target.tagName.toUpperCase() !== 'BUTTON') {
             return false;
         }
-        callback.call(this, !e.target.classList.contains('cancel'));
+        _cb.call(this, !e.target.classList.contains('cancel'));
         close();
     }
 
     //pop up
-    function popup() {
-        // var $div = $$('#' + options.id);
-        // var $back = $$('.mvalert-backdrop');
-
+    function popup(cb) {
+        _cb = cb;
         setTimeout(function () {
-            $back.classList.add('mvalert-in');
-            $div.classList.add('mvalert-in');
-            $div.focus();
+            _$back.classList.add('mvalert-in');
+            _$div.classList.add('mvalert-in');
+            _$div.focus();
         }, 150);
 
-        $div.addEventListener('click', clickHandler, false);
+        _$div.addEventListener('click', clickHandler, false);
 
     }
 
     //close popup
     function close() {
-        $div.removeEventListener('click', clickHandler, false);
-        $div.classList.remove('mvalert-in');
-        $back.classList.remove('mvalert-in');
-        $div.remove();
-        $back.remove();
-    }
-
-    //timestamp
-    function timeStamp() {
-        return +Date.now();
-    }
-
-    //get element by selector
-    function $$(selector) {
-        if (!document.querySelector) {
-            console.warn('please upgrade your brower');
-            throw new Error('brower version sot supported,please upgrade your brower');
-        }
-        return document.querySelector(selector);
-
+        _$div.removeEventListener('click', clickHandler, false);
+        _$div.classList.remove('mvalert-in');
+        _$back.classList.remove('mvalert-in');
+        _$div.remove();
+        _$back.remove();
     }
 
     //return object

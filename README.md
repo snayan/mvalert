@@ -24,23 +24,24 @@ bower install mvalert --save
 
 The `mvalert` component will return an object which containe two method `alert` and `confirm`,the same function as browser.
 
-###alert(title,message,callback,options)
+###alert(title,message,[options],[callback])
 
 * `title` , the title of the popup window,can not be `null` and `undefined`
 * `message`,the message will be shown in the popup window body,can be a string or basic html tag,can not be `null` and `undefined`
 * `callback`,when click button in the popup window ,will invoke the `callback` with a paramter.
-* `options`, configure the button text and popup window id.There is default value.
+* `options`, configure popup window.There is default value.
 
 	```javascript
-	//options config
+	//default options config
     var options = {
-        ok: '确定',
-        cancel: '取消',
-        id: null //default to timestamp
+        ok: '确定',//ok button text
+        cancel: '取消',//cancel button text
+        id: null,//default to timestamp 
+        icon: null//icon class name,popup window have not icon in default.
     };
 	```
 
-###confirm(title,message,callback,options)
+###confirm(title,message,[options],[callback])
 These params are the same as `alert`.
 
 ##Examples
@@ -78,6 +79,10 @@ I welcome contributions of all kinds from anyone.
 * [Pull requests](https://github.com/snayan/mvalert/pulls)
 
 ## Changelog
+
+### v1.0.2
+
+optimise and fix some problems
 
 ### v1.0.1
 

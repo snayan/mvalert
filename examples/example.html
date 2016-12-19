@@ -21,6 +21,10 @@
             line-height: 1;
             margin: 100px;
         }
+
+        span.icon {
+            background: url("../src/ic_alert.png") no-repeat;
+        }
     </style>
 </head>
 <body>
@@ -34,7 +38,9 @@
 
     var mv = Object.create(MvAlert);
     $('#alert').addEventListener('click', function (e) {
-        mv.alert('标题', '这里是提示消息，可以是html标签');
+        mv.alert('标题', '这里是提示消息，可以是html标签', {icon: 'icon', id: 'id', ok: 'ok'}, function (isOK) {
+            console.log(isOK);
+        });
     });
     $('#confirm').addEventListener('click', function (e) {
         mv.confirm('标题', '这里是提示消息，可以是html标签', function (isOk) {
