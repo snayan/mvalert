@@ -77,5 +77,16 @@ I welcome contributions of all kinds from anyone.
 * [Feature requests](https://github.com/snayan/mvalert/issues)
 * [Pull requests](https://github.com/snayan/mvalert/pulls)
 
+## Changelog
+
+### v1.0.1
+
+* remove img and use css for icon 
+* fix callback closures problem
+* remove `alert` className to avoid conflict
+
+### v1.0.0
+first release,complete basic functions.
+
 ## License
 Licensed under the MIT License

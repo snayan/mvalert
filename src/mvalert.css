@@ -75,14 +75,18 @@ div.mvalert-modal-body-msg {
 }
 
 span.mvalert-modal-body-img {
-    background: url("ic_alert.png") no-repeat;
+    /*background: url("ic_alert.png") no-repeat;*/
+    background: #e64f4f;
     width: 24px;
     height: 24px;
     border: none;
+    border-radius: 100%;
     margin: 0 10px 0 0;
     display: block;
     float: left;
-
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
 }
 
 div.mvalert-modal-body-button {

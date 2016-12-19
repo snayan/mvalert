@@ -34,13 +34,11 @@
 
     var mv = Object.create(MvAlert);
     $('#alert').addEventListener('click', function (e) {
-        console.log(this);
-        mv.alert('标题', '这里是提示消息，可以是html标签', function (isOk) {
-            console.log(isOk);
-        });
+        mv.alert('标题', '这里是提示消息，可以是html标签');
     });
     $('#confirm').addEventListener('click', function (e) {
         mv.confirm('标题', '这里是提示消息，可以是html标签', function (isOk) {
+            console.log('confirm');
             console.log(isOk);
         });
     });

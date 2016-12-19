@@ -33,6 +33,7 @@
     function alert(title, msg, callback, options) {
         if (typeof callback != 'function') {
             options = callback;
+            callback = void 0;
         }
         init(title, msg, callback, options);
         createBackdrop();
@@ -44,6 +45,7 @@
     function confirm(title, msg, callback, options) {
         if (typeof callback != 'function') {
             options = callback;
+            callback = void 0;
         }
         init(title, msg, callback, options);
         createBackdrop();
@@ -57,9 +59,7 @@
             console.error('title or msg can not be null or undefined');
             throw new Error('title or msg can not be null or undefined');
         }
-        if (typeof cb === 'function') {
-            callback = cb;
-        }
+        callback = typeof cb === 'function' ? cb : Function.prototype;
         options.id = pre_id + timeStamp();
         if (opts) {
             if (opts.ok && typeof opts.ok === 'string') {
@@ -94,7 +94,7 @@
         var okBtn = document.createElement('button');
         var cancelBtn = document.createElement('button');
         div.classList.add('mvalert-modal');
-        div.classList.add(type);
+        // div.classList.add(type);
         div.setAttribute('id', options.id);
         header.innerText = title;
         header.classList.add('mvalert-modal-header');
@@ -103,6 +103,7 @@
         tbody.innerHTML = msg;
         tbody.classList.add('mvalert-modal-body-msg');
         span.classList.add('mvalert-modal-body-img');
+        span.innerText = '!';
         cbody.appendChild(span);
         cbody.appendChild(tbody);
         bbody.classList.add('mvalert-modal-body-button');
