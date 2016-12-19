@@ -95,8 +95,8 @@
         tbody.innerHTML = msg;
         tbody.classList.add('mvalert-modal-body-msg');
         if (opts.icon) {
-            span.classList.add('mvalert-modal-body-img');
             span.classList.add(opts.icon);
+            span.classList.add('mvalert-modal-body-img');
             // span.innerText = '!';
             cbody.appendChild(span);
         }
